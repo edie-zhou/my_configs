@@ -168,3 +168,17 @@ if has('unnamedplus')
 else
   set clipboard=unnamed
 endif
+
+"=================================================================
+" 'highlight' things
+"=================================================================
+
+" set matching parenthesis/brace/bracket to be underlined instead of highlight
+highlight MatchParen cterm=underline ctermbg=none ctermfg=none
+
+" make the vim tab bar look prettier
+highlight   TabLine       term=None   cterm=Underline   ctermfg=Blue    ctermbg=Black    gui=None " part of tabline that isn't selected
+highlight   TabLineSel    term=None   cterm=Reverse                                      gui=None " part of tabline that is highlighted
+highlight   TabLineFill   term=None   cterm=None        ctermfg=Black   ctermbg=Black    gui=None " the rest of the tabline
+
+
