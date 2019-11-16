@@ -1,4 +1,5 @@
 # Edie's .bashrc file
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -15,10 +16,26 @@ esac
 # Some helpful aliases
 # =============================================================================
 
+# aliases for quickly editing configuration files
+alias ea='vim ~/.bashrc; source ~/.bashrc'
+alias ev='vim ~/.vimrc'
+
 # Interactive commands
 alias rm='rm -vi' # Add verbose and interactive to rm, cp, mv
 alias cp='cp -vi'
 alias mv='mv -vi'
+
+# NOTE: can't have spaces in the {} shell glob
+# NOTE: there is no '--exclude-dir' option for CTAGS
+# Directories and files to exclude for CTAGS and grep
+exclude_dirs='\*{.catkin_tools,.private,build,logs,.git}'
+exclude_files='\*{tags,.tags,.catkin,.js,.json,.map,.ts,.pyc,.rviz,.so,.o,.cmake,.xml,.ijmap,.html,.svg,.css,.lock,.test,.perspective,.bin,.bnf}'
+
+alias grep='grep -niI --color --exclude-dir='"$exclude_dirs"' --exclude='"$exclude_files"
+
+# create the ctags file
+alias CT='ctags -R -f .tags --exclude='"$exclude_dirs"' --exclude='"$exclude_files"''
+alias CT..='builtin cd ..  &&  CT  &&  builtin cd -'
 
 # Custom shortcuts
 alias clean='rm -f "#"* "."*~ *~ *.bak *.dvi *.aux *.log' # Delete temp files
@@ -35,20 +52,38 @@ alias ll='ls -altrh' # Very comprehensive list
 alias la='ls -A'
 alias l='ls -CF'
 
+# Apt aliases
+alias install='sudo apt-get --yes --force-yes install'
+alias search='sudo apt-cache search'
+
 # Git aliases
-alias gs='git status'
 alias ga='git add'
-alias gch='git checkout'
 alias gb='git branch'
+alias gba='git branch -av'
 alias gc='git commit'
-alias gr='git rebase'
+alias gch='git checkout'
+alias gd='git diff -w --ignore-blank-lines'
+alias gf='git fetch'
+alias gl='git log --oneline -n 10'
+alias gll='git log --all --decorate --graph --oneline'
+alias glll='git log --all --decorate --graph'
 alias gm='git merge'
-alias gl='git log --oneline --graph --all'
-alias gll='git log --graph --decorate --all'
 alias gph='git push'
 alias gpl='git pull'
-alias gf='git fetch'
+alias gs='git status'
+alias gr='git rebase'
 
+# Python aliases
+alias p='python'
+alias p2='python2'
+alias p3='python3'
+
+# powering off and restarting from command line
+alias powerdown='poweroff'
+alias shutdown='poweroff'
+alias restart='reboot'
+alias logout='gnome-session-quit --logout --no-prompt'
+alias sleeppc='systemctl suspend'
 
 # User-defined bash functions
 # =============================================================================
@@ -65,7 +100,7 @@ function cd() {
     builtin cd "${new_directory}" && ls
 }
 
-# Detects file type and applies corresponding flags
+# Detects file type and applies corresponding flags when extracting
 extract() {
     if [ -f $1 ] ; then
         case $1 in
