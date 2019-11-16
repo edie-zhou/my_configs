@@ -14,6 +14,7 @@ esac
 
 # Some helpful aliases
 # =============================================================================
+
 # Interactive commands
 alias rm='rm -vi' # Add verbose and interactive to rm, cp, mv
 alias cp='cp -vi'
@@ -27,6 +28,7 @@ alias h='history'
 alias cs='clear;ll' # Clear and list
 alias p='cat'
 alias rf='rm -rf'
+alias vim='vim -p' 
 
 # List aliases
 alias ll='ls -altrh' # Very comprehensive list
@@ -34,7 +36,6 @@ alias la='ls -A'
 alias l='ls -CF'
 
 # Git aliases
-alias fuck='git status'
 alias gs='git status'
 alias ga='git add'
 alias gch='git checkout'
@@ -51,22 +52,17 @@ alias gf='git fetch'
 
 # User-defined bash functions
 # =============================================================================
-# Save original user path 
-export MY_ORIGINAL_PATH=$PATH
-# Change to python env to conda env
-use_conda() {
-# export PATH="/home/edie/miniconda3/bin:$PATH"  # commented out by conda initialize
-    echo "Conda has been activated"
-}
 
-# Change to python env to system env
-use_original() {
-    if [ -x "$(command -v conda)" ]; then
-        source deactivate
-    fi
-    export PATH=$MY_ORIGINAL_PATH
-    echo "Restored original PATH"
-    python --version
+# Set default editor
+export EDITOR=vim
+
+# Overwrites cd so every cd is followed by an ls
+function cd() {
+    new_directory="$*";
+    if [ $# -eq 0 ]; then
+        new_directory=${HOME};
+    fi;
+    builtin cd "${new_directory}" && ls
 }
 
 # Detects file type and applies corresponding flags
@@ -90,18 +86,57 @@ extract() {
     fi
 }
 
-# Overwrites cd so every cd is followed by an ls
-function cd() {
-    new_directory="$*";
-    if [ $# -eq 0 ]; then
-        new_directory=${HOME};
-    fi;
-    builtin cd "${new_directory}" && ls
+# Save original user path 
+export MY_ORIGINAL_PATH=$PATH
+
+# Change to python env to conda env
+use_conda() {
+#    export PATH="/home/edie/miniconda3/bin:$PATH"  # commented out by conda initialize
+    echo "Conda has been activated"
+}
+
+# Change to python env to system env
+use_original() {
+    if [ -x "$(command -v conda)" ]; then
+        source deactivate
+    fi
+    export PATH=$MY_ORIGINAL_PATH
+    echo "Restored original PATH"
+    python --version
 }
 
 
+# Default conda init from conda install
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/home/edie/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/edie/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/edie/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/edie/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# <<< conda initialize <<<
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
 # Eternal bash history
 # =============================================================================
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 export HISTCONTROL=ignoreboth
@@ -118,22 +153,9 @@ shopt -s cmdhist
 HISTSIZE=1000000
 HISTFILESIZE=2000000
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
-
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-#shopt -s globstar
-
-
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-
 # Prompt modifications
 # =============================================================================
+
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
@@ -189,7 +211,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -218,25 +240,8 @@ fi
 # Displays current working directory and git branch in prompt
 export PS1='\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;36m\] @ \[\033[0;36m\]\h \w\[\033[0;32m\]$(__git_ps1)\n\[\033[0;32m\]└─\[\033[0m\033[0;32m\] \$\[\033[0m\033[0;32m\] ▶\[\033[0m\] '
 
-# Set default editor
-export EDITOR=vim
-alias vim='vim -p' 
-
-# Default conda init from conda install
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/home/edie/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/home/edie/miniconda3/etc/profile.d/conda.sh" ]; then
-#         . "/home/edie/miniconda3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/home/edie/miniconda3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# <<< conda initialize <<<
+# Misc.
+# =============================================================================
 
 # Add pintos to PATH
 export PATH=$HOME/git/pintos-userprog/pintos/src/utils:$PATH
