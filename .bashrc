@@ -57,6 +57,7 @@ alias install='sudo apt-get --yes --force-yes install'
 alias search='sudo apt-cache search'
 
 # Git aliases
+alias g='git'
 alias ga='git add'
 alias gb='git branch'
 alias gbv='git branch -av'
