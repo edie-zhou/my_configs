@@ -81,6 +81,11 @@ alias p='python'
 alias p2='python2'
 alias p3='python3'
 
+# Libreoffice aliases
+alias lwriter='libreoffice --writer'
+alias limpress='libreoffice --impress'
+alias lcalc='libreoffice --calc'
+
 # powering off and restarting from command line
 alias powerdown='poweroff'
 alias shutdown='poweroff'
@@ -147,17 +152,17 @@ use_original() {
 # Default conda init from conda install
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/home/edie/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/home/edie/miniconda3/etc/profile.d/conda.sh" ]; then
-#         . "/home/edie/miniconda3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/home/edie/miniconda3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
+__conda_setup="$('/home/edie/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/edie/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/edie/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/edie/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
 # <<< conda initialize <<<
 
 # check the window size after each command and, if necessary,
