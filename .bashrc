@@ -291,4 +291,4 @@ export PS1='\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;36m\] @ \[\033[0;36m\]
 
 # Put pintos in PATH
 # source /home/edie/git/pintos-userprog/.PINTOS_PATH
-alias pintos-gdb='GDBMACROS=/home/edie/git/pintos-userprog/misc/gdb-macros pintos-gdb'
+# alias pintos-gdb='GDBMACROS=/home/edie/git/pintos-userprog/misc/gdb-macros pintos-gdb'
