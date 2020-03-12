@@ -81,6 +81,9 @@ alias p='python'
 alias p2='python2'
 alias p3='python3'
 
+# Conda aliases
+alias sactivate='source activate'
+
 # Libreoffice aliases
 alias lwriter='libreoffice --writer'
 alias limpress='libreoffice --impress'
