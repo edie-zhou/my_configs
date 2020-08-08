@@ -74,7 +74,10 @@ alias gm='git merge'
 alias gph='git push'
 alias gpl='git pull'
 alias gs='git status'
-alias gr='git rebase'
+alias gst='git stash'
+alias gr='git reset'
+alias grb='git rebase'
+alias grf='git reflog'
 
 # Python aliases
 alias p='python'
