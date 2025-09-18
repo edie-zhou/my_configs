@@ -2,7 +2,7 @@
 
 This repository contains my personal configuration files (dotfiles) for various tools and shell environments. These configurations help maintain a consistent development environment across different machines.
 
-## 📁 What's Included
+## What's Included
 
 | File | Purpose |
 |------|---------|
@@ -13,7 +13,7 @@ This repository contains my personal configuration files (dotfiles) for various 
 | `.vimrc` | Vim editor configuration and plugins |
 | `.tmux.conf` | Tmux terminal multiplexer configuration |
 
-## 🚀 Installation
+## Installation
 
 ### Quick Setup
 ```bash
@@ -41,7 +41,7 @@ cp .vimrc ~/.vimrc
 # ... etc for other files
 ```
 
-## ⚙️ Key Features
+## Features
 
 ### Shell Configuration
 - **Bash/Zsh**: Custom prompt, aliases, and productivity enhancements
@@ -54,7 +54,7 @@ cp .vimrc ~/.vimrc
 ### Terminal Management
 - **Tmux**: Terminal multiplexer setup for managing multiple terminal sessions
 
-## 🔧 Customization
+## Customization
 
 Feel free to fork this repository and modify the configurations to suit your preferences. Each configuration file is well-commented to help you understand what each setting does.
 
@@ -66,17 +66,7 @@ cp ~/.vimrc ~/.vimrc.backup
 # ... etc for other files you want to backup
 ```
 
-## 📋 Requirements
-
-- **Bash** or **Zsh** shell
-- **Vim** editor
-- **Tmux** terminal multiplexer (optional, for `.tmux.conf`)
-
-## 🤝 Contributing
-
-If you have suggestions for improvements or find any issues, feel free to open an issue or submit a pull request.
-
-## 📄 License
+## License
 
 These configuration files are provided as-is. Feel free to use, modify, and distribute them as needed.
 
