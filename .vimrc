@@ -1,20 +1,6 @@
 set nocompatible " required
 
 "=================================================================
-" Vim training - don't use the arrow keys
-"=================================================================
-
-" Disable arrow keys in all modes
-inoremap <Up>    <NOP>
-inoremap <Down>  <NOP>
-inoremap <Left>  <NOP>
-inoremap <Right> <NOP>
-noremap  <Up>    <NOP>
-noremap  <Down>  <NOP>
-noremap  <Left>  <NOP>
-noremap  <Right> <NOP>
-
-"=================================================================
 " Some basic stuff to always include
 "=================================================================
 
@@ -39,9 +25,6 @@ augroup ubuntu
 
   " after writing to the .vimrc file, auto-source it
   autocmd BufWritePost .vimrc source %
-
-  " after writing to a file, remove trailing and leading whitespace
-  autocmd BufWritePost * :silent call convenient#TrimWhitespace()
 
 augroup END
 
@@ -91,9 +74,6 @@ set expandtab
 " prevent ubuntu from outputting garbage characters
 set t_RV=
 
-"enable paste mode without auto formating
-set paste
-
 "turn on ruler
 set ruler
 
@@ -134,8 +114,8 @@ set shiftwidth=0
 set softtabstop=-1
 
 " Set the tab length
-" set tabstop=4
-set tabstop=2 " NOTE: For ROS, the convention is to use tabs of length 2
+set tabstop=4
+" set tabstop=2 " NOTE: For ROS, the convention is to use tabs of length 2
 
 " set autoindent and smart tabbing
 set autoindent

@@ -79,14 +79,6 @@ alias gr='git reset'
 alias grb='git rebase'
 alias grf='git reflog'
 
-# Python aliases
-alias p='python'
-alias p2='python2'
-alias p3='python3'
-
-# Conda aliases
-alias sactivate='source activate'
-
 # Libreoffice aliases
 alias lwriter='libreoffice --writer'
 alias limpress='libreoffice --impress'
@@ -98,6 +90,15 @@ alias shutdown='poweroff'
 alias restart='reboot'
 alias logout='gnome-session-quit --logout --no-prompt'
 alias sleeppc='systemctl suspend'
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
 
 # User-defined bash functions
 # =============================================================================
@@ -137,39 +138,6 @@ extract() {
 
 # Save original user path 
 export MY_ORIGINAL_PATH=$PATH
-
-# Change to python env to conda env
-use_conda() {
-#    export PATH="/home/edie/miniconda3/bin:$PATH"  # commented out by conda initialize
-    echo "Conda has been activated"
-}
-
-# Change to python env to system env
-use_original() {
-    if [ -x "$(command -v conda)" ]; then
-        source deactivate
-    fi
-    export PATH=$MY_ORIGINAL_PATH
-    echo "Restored original PATH"
-    python --version
-}
-
-
-# Default conda init from conda install
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/edie/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/edie/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/edie/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/edie/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -238,6 +206,9 @@ else
 fi
 unset color_prompt force_color_prompt
 
+# Displays current working directory and git branch in prompt
+export PS1='\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;36m\] @ \[\033[0;36m\]\h \w\[\033[0;32m\]$(__git_ps1)\n\[\033[0;32m\]\$\[\033[0m\033[0;32m\] \[\033[0m\]'
+
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
@@ -266,15 +237,6 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -286,15 +248,18 @@ if ! shopt -oq posix; then
     fi
 fi
 
-# Displays current working directory and git branch in prompt
-export PS1='\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;36m\] @ \[\033[0;36m\]\h \w\[\033[0;32m\]$(__git_ps1)\n\[\033[0;32m\]\$\[\033[0m\033[0;32m\] \[\033[0m\]'
-
 # Misc.
 # =============================================================================
+export M2_HOME=/opt/maven/apache-maven-3.6.3
+export PATH=$M2_HOME/bin:$PATH
 
-# Add pintos to PATH
-# export PATH=$HOME/git/pintos-userprog/pintos/src/utils:$PATH
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+export JAVA7_JRE=/usr/lib/jvm/jre1.7.0_80
+export PATH=$JAVA_JRE/bin:$PATH
 
-# Put pintos in PATH
-# source /home/edie/git/pintos-userprog/.PINTOS_PATH
-# alias pintos-gdb='GDBMACROS=/home/edie/git/pintos-userprog/misc/gdb-macros pintos-gdb'
+alias eclipse=/opt/eclipse/java-2025-06/eclipse/eclipse
+alias podman-desktop='flatpak run io.podman_desktop.PodmanDesktop'
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
