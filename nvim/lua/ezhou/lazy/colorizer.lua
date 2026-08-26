@@ -1,7 +1,11 @@
 return {
-  "norcalli/nvim-colorizer.lua",
+  "catgoose/nvim-colorizer.lua",
+  event = "BufReadPre",
   config = function()
     vim.opt.termguicolors = true
-    require("colorizer").setup()
-  end
+    require("colorizer").setup({
+      -- options go here
+    })
+  end,
 }
+
