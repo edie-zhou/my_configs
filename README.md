@@ -2,8 +2,6 @@
 
 This repository contains my personal configuration files (dotfiles) for various tools and shell environments. These configurations help maintain a consistent development environment across different machines.
 
-## What's Included
-
 | File | Purpose |
 |------|---------|
 | `.bashrc` | Bash shell configuration and customizations |
@@ -12,6 +10,7 @@ This repository contains my personal configuration files (dotfiles) for various 
 | `.inputrc` | Readline library configuration for command-line editing |
 | `.vimrc` | Vim editor configuration and plugins |
 | `.tmux.conf` | Tmux terminal multiplexer configuration |
+| `nvim` | Neovim configuration, default location in .config|
 
 ## Installation
 
@@ -22,12 +21,7 @@ git clone https://github.com/edie-zhou/my_configs.git
 cd my_configs
 
 # Create symbolic links to your home directory
-ln -sf $(pwd)/.bashrc ~/.bashrc
-ln -sf $(pwd)/.zshrc ~/.zshrc
-ln -sf $(pwd)/.profile ~/.profile
-ln -sf $(pwd)/.inputrc ~/.inputrc
-ln -sf $(pwd)/.vimrc ~/.vimrc
-ln -sf $(pwd)/.tmux.conf ~/.tmux.conf
+e.g. ln -sf $(pwd)/.bashrc ~/.bashrc
 
 # Reload your shell configuration
 source ~/.bashrc  # or source ~/.zshrc if using zsh
@@ -50,6 +44,7 @@ cp .vimrc ~/.vimrc
 
 ### Editor Setup
 - **Vim**: Comprehensive vim configuration with useful settings and mappings
+- **Neovim**: Comprehensive neovim configuration with useful plugins 
 
 ### Terminal Management
 - **Tmux**: Terminal multiplexer setup for managing multiple terminal sessions
@@ -72,4 +67,4 @@ These configuration files are provided as-is. Feel free to use, modify, and dist
 
 ---
 
-*Last updated: September 2025*
+*Last updated: August 2026*
