@@ -67,4 +67,4 @@ These configuration files are provided as-is. Feel free to use, modify, and dist
 
 ---
 
-*Last updated: September 2025*
+*Last updated: August 2026*
